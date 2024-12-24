@@ -16,9 +16,6 @@ The Virtual Resume Builder is an ATS-friendly tool designed to streamline the re
 - User-friendly interface for all skill levels.
 - Saves time and effort while maintaining high-quality standards.
 
-## Installation
-To set up the Virtual Resume Builder locally, follow these steps:
-
 ## Usage
 1. Fill out the form with your personal, educational, and professional details.
 2. Select or deselect the sections you want to include in your resume.
