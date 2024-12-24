@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Preview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='previewstyle.css') }}">
+</head>
+<body>
+    <div class="a4-container">
+        <h1>{{ data.name }}</h1>
+        <div class="contact-info">
+            <p>{{ data.email }} |</p>
+            <p>{{ data.phone }} |</p>
+            <p><a href="{{ data.portfolio }}" target="_blank">{{ data.portfolio }}</a></p>
+        </div>
+
+        <h2>Education</h2>
+        <div class="education-container">
+            <p class="education">
+                <strong>{{ data.education }}</strong>
+            </p>
+            <span class="education-duration">
+                ({{ data.education_from }} - {{ data.education_to }})
+            </span>
+        </div>
+
+        <div class="course-container">
+            <p class="course">
+                <strong>{{ data.course_taken }}</strong>
+            </p>
+            <span class="gpa">
+                CGPA: {{ data.gpa }}
+            </span>
+        </div>
+
+        <h2>Experience</h2>
+        {% for experience in data.experience %}
+        <div class="experience-container">
+            <p class="experience">
+                <strong>{{ experience.title }}</strong>
+                <span class="experience-duration">({{ experience.from_year }} - {{ experience.to_year }})</span>
+            </p>
+        </div>
+        <p class="description">{{ experience.description }}</p>
+        {% endfor %}
+
+        <h2>Projects</h2>
+        {% for project in data.projects %}
+        <div>
+            <p><strong>{{ project.title }}</strong></p>
+            <p class="description">{{ project.description }}</p>
+        </div>
+        {% endfor %}
+
+        <h2>Skills</h2>
+        <div class="skills-preview">
+            <div class="skill-item">
+                <strong>Languages:</strong>
+                <span>{{ data.skills.languages }}</span>
+            </div>
+            <div class="skill-item">
+                <strong>Libraries/Frameworks:</strong>
+                <span>{{ data.skills.libraries }}</span>
+            </div>
+            <div class="skill-item">
+                <strong>Tools:</strong>
+                <span>{{ data.skills.tools }}</span>
+            </div>
+            <div class="skill-item">
+                <strong>Others:</strong>
+                <span>{{ data.skills.others }}</span>
+            </div>
+        </div>
+    </div>
+    <button class="print-btn" id="printButton">Print</button>
+    <script>
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if ((event.ctrlKey || event.metaKey) && event.key === 'p') {
+                event.preventDefault(); 
+                window.print();
+            }
+        });
+    </script>
+</body>
+</html>

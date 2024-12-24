@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const addProjectBtn = document.getElementById("add-project");
+            const projectsSection = document.getElementById("projects-section");
+        
+            addProjectBtn.addEventListener("click", () => {
+                const newProject = document.createElement("div");
+                newProject.classList.add("project-entry");
+                newProject.innerHTML = `
+                    <input type="text" name="projects[]" placeholder="Project Name">
+                    <textarea name="project_details[]" placeholder="Project Description"></textarea>
+                `;
+                projectsSection.insertBefore(newProject, addProjectBtn);
+            });
+        
+            const addExperienceBtn = document.getElementById("add-experience");
+            const experienceSection = document.getElementById("experience-section");
+        
+            addExperienceBtn.addEventListener("click", () => {
+                const newExperience = document.createElement("div");
+                newExperience.classList.add("experience-entry");
+                newExperience.innerHTML = `
+                    <input type="text" name="experience_positions[]" placeholder="Company Name and Title">
+                    <textarea name="experience_details[]" placeholder="Job Description"></textarea>
+                    <input type="text" name="experience_from[]" placeholder="From (Year)">
+                    <input type="text" name="experience_to[]" placeholder="To (Year)">
+                `;
+                experienceSection.insertBefore(newExperience, addExperienceBtn);
+            });
+        });
+    </script>        
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
